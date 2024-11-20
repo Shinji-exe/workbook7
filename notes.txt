@@ -1,0 +1,85 @@
+JSON.stringify() : Turns array and/or objects into a string. Creates JSON string from a JavaScript object.
+-You will see this when we start calling server-side methods to retrieve data from or pass data to a REST API.
+
+
+let job = {
+title : "Web Designer",
+startDate : "October 2022",
+company : "AT&T",
+minSalary : 52000,
+maxSalary : 86000
+};
+
+let str = JSON.stringify(job);
+console.log(str);
+
+STRING CONTAINS
+{
+"title" : "Web Designer",
+"startDate" : "October 2022",
+"company" : "AT&T",
+"minSalary" : 52000,
+"maxSalary" : 86000
+}
+
+-You can provide a filter to stringify() so that it only includes the properties specified
+//Filter
+let job = {
+title : "Web Designer",
+startDate : "October 2022",
+company : "AT&T",
+minSalary : 52000,
+maxSalary : 86000
+};
+
+let filter = ["title", "company"];
+let str = JSON.stringify(job, filter);
+
+let str = JSON.stringify(job);
+console.log(str);
+// only the title and company properties will be in
+// the string
+STRING CONTAINS
+{
+"title" : "Web Designer",
+"company" : "AT&T"
+}
+
+
+
+
+JSON.parse() : Turns the string back into the object and/or array. Convert a JSON string back into a JavaScript object.
+- If the string is not a valid JSON, an error is generated
+-ES6 allows multiline strings if they are surronded by back ticks(``)
+
+let str = `{"title" : "Web Designer",
+"startDate" : "October 2022",
+"company" : "AT&T",
+"minSalary" : 52000,
+"maxSalary" : 86000
+}`;
+let job = JSON.parse(str);
+console.log(job.title);
+console.log(job.company);
+
+
+
+
+
+
+REST APIs have a very unique URLs with specific meanings
+
+Get customers gets all customers
+GET /api/customers 
+
+Get customer 101/ meaning get a customer
+GET /api/customers/101
+
+Inserts accompanying body data into the customer data store
+POST /api/customers
+
+Updates customer data store from accompanying body data
+PUT /api/customers
+
+Delete customer 101/ delete a customer
+DELETE /api/customers/101
