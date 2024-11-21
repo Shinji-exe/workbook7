@@ -1,6 +1,7 @@
 "use strict";
 const courseBody = document.getElementById("courseBody");
 const cardSection = document.querySelector(".cardSection");
+const urlParams = new URLSearchParams(location.search);
 
 async function getData() {
   try {
@@ -14,9 +15,11 @@ async function getData() {
     console.log("Error code:", error);
   }
 }
-
-getData();
-
+if (urlParams.has("courseid") === false) {
+  getData();
+} else {
+  fetchSingleCourse();
+}
 function getAllCourses(courses) {
   courseBody.innerHTML = "";
   for (let i = 0; i < courses.length; i++) {
@@ -53,10 +56,10 @@ function getAllCourses(courses) {
 }
 
 function createCardsForDisplay(courses) {
-    for (let i = 0; i < courses.length; i++) {
-      createCards(courses[i].courseName, courses[i].id, courses[i].dept, courses[i].startDate, courses[i].instructor);
-    }
+  for (let i = 0; i < courses.length; i++) {
+    createCards(courses[i].courseName, courses[i].id, courses[i].dept, courses[i].startDate, courses[i].instructor);
   }
+}
 
 function createCards(courseName, courseNumber, department, startDate, instructor) {
   const cardContainers = document.createElement("div");
@@ -78,7 +81,7 @@ function createCards(courseName, courseNumber, department, startDate, instructor
   cardText.className = "card-text";
   cardText.textContent = `Starts: ${startDate}, Instructor: ${instructor}`;
 
-  const cardLink = document.createElement("a")
+  const cardLink = document.createElement("a");
   cardLink.href = `details.html?courseid=${courseNumber}`;
   cardLink.innerText = `${courseName}`;
 
@@ -91,11 +94,8 @@ function createCards(courseName, courseNumber, department, startDate, instructor
   cardSection.appendChild(cardContainers);
 }
 
-
-
 async function fetchSingleCourse() {
   //Getting a single course with the id
-  const urlParams = new URLSearchParams(location.search);
 
   if (urlParams.has("courseid") === true) {
     let id = urlParams.get("courseid");
@@ -110,10 +110,10 @@ async function fetchSingleCourse() {
     let data = await response.json();
     console.log(data);
     getACourse(data);
+    // createCardsForDisplay(data);
+    getACardCourse(data);
   }
 }
-
-fetchSingleCourse();
 
 function getACourse(course) {
   courseBody.innerHTML = "";
@@ -141,9 +141,43 @@ function getACourse(course) {
   tableData7.innerText = course.numDays;
 
   let anchorTag = document.createElement("a");
-  anchorTag.href = `http://localhost:8081/Wednesday/coursesApi/details.html?courseid=${course[i].id}`;
+  anchorTag.href = `details.html?courseid=${course.id}`;
   anchorTag.innerText = "See More";
 
   let tableData8 = tableRow.insertCell();
   tableData8.appendChild(anchorTag);
+}
+
+function getACardCourse(course) {
+  // createCardsForDisplay(course)
+  const cardContainers = document.createElement("div");
+  cardContainers.className = "card";
+  cardContainers.style.width = "18rem";
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const cardTitle = document.createElement("h5");
+  cardTitle.className = "card-title";
+  cardTitle.textContent = course.courseName;
+
+  const cardSubtitle = document.createElement("h6");
+  cardSubtitle.className = "card-subtitle mb-2 text-body-secondary";
+  cardSubtitle.textContent = `${course.courseNum}, ${course.dept}`;
+
+  const cardText = document.createElement("p");
+  cardText.className = "card-text";
+  cardText.textContent = `Starts: ${course.startDate}, Instructor: ${course.instructor}`;
+
+  const cardLink = document.createElement("a");
+  cardLink.href = `details.html?courseid=${course.courseNum}`;
+  cardLink.innerText = `${course.courseName}`;
+
+  cardBody.appendChild(cardLink);
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(cardSubtitle);
+  cardBody.appendChild(cardText);
+  cardContainers.appendChild(cardBody);
+
+  cardSection.appendChild(cardContainers);
 }
