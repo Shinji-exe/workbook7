@@ -54,7 +54,7 @@ function getAllCourses(courses) {
 
 function createCardsForDisplay(courses) {
     for (let i = 0; i < courses.length; i++) {
-      createCards(courses[i].courseName, courses[i].id, courses[i].dept);
+      createCards(courses[i].courseName, courses[i].id, courses[i].dept, courses[i].startDate, courses[i].instructor);
     }
   }
 
@@ -78,6 +78,11 @@ function createCards(courseName, courseNumber, department, startDate, instructor
   cardText.className = "card-text";
   cardText.textContent = `Starts: ${startDate}, Instructor: ${instructor}`;
 
+  const cardLink = document.createElement("a")
+  cardLink.href = `details.html?courseid=${courseNumber}`;
+  cardLink.innerText = `${courseName}`;
+
+  cardBody.appendChild(cardLink);
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(cardSubtitle);
   cardBody.appendChild(cardText);
