@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/bootstrap.css" />
+    <script defer src="scripts/script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header></header>
+
+    <!-- <main class="container mt-4">
+      <section class="container d-flex justify-content-around align-items-center">
+        <label class="form-label mb-3" for="searchByTypeSelect" style="display: none">Shop By</label>
+        <select
+          class="form-select mb-3 h-50 w-50 me-3"
+          name=""
+          id="searchByTypeSelect"
+          onchange="getCertainProductsDropdown()"
+        >
+          <option value=""></option>
+
+          <option value="">View All</option>
+        </select>
+
+        <label for="form-label" style="display: none">Products</label>
+        <select class="form-select my-3 h-50 w-50" name="" id="searchByProduct"></select>
+      </section>
+
+      <div id="cardSection" class="container d-flex flex-wrap gap-3"></div>
+    </main> -->
+    <div class="container mt-3">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <label for="searchByTypeSelect" class="form-label">Type</label>
+          <select id="searchByTypeSelect" class="form-select" >
+            <option value="">Select Type</option>
+            <!-- Options go here -->
+             <option value="" onclick="">Shop by Category</option>
+             <option value="" onclick="">View All</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <label for="searchByProduct" class="form-label">Product</label>
+          <select id="searchByProduct" class="form-select" onchange="getCertainProductsDropdown()"">
+            <option value="">Select Product</option>
+            <!-- Options go here -->
+          </select>
+
+        </div>
+        <div class="col-auto">
+          <!-- <button id="searchButton" class="btn btn-primary mt-4">Search</button> -->
+           <input type="radio" name="" id="sortAlphabetical">
+        </div>
+      </div>
+
+
+      <div id="cardSection" class="container d-flex flex-wrap gap-3 mt-3"></div>
+    </div>
+    <footer></footer>
+  </body>
+</html>
