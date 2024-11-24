@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/bootstrap.css" />
+    <link rel="stylesheet" href="./styles/customs.css">
     <script defer src="scripts/script.js"></script>
     <title>Document</title>
   </head>
@@ -31,6 +32,10 @@
       <div id="cardSection" class="container d-flex flex-wrap gap-3"></div>
     </main> -->
     <div class="container mt-3">
+        <div>
+            <input type="search" name="" id="searchInput">
+            <button onclick="show()" id="searchButton">Find</button>
+        </div>
       <div class="row align-items-center">
         <div class="col-auto">
           <label for="searchByTypeSelect" class="form-label">Type</label>
@@ -49,9 +54,12 @@
           </select>
 
         </div>
-        <div class="col-auto">
+        <div class="col-auto ">
           <!-- <button id="searchButton" class="btn btn-primary mt-4">Search</button> -->
-           <input type="radio" name="" id="sortAlphabetical">
+           <label for="sortAlphabetical">Sort: A-Z</label>
+           <input type="radio" name="Sort" id="sortAlphabetical" onclick="changeSort()">
+           <label for="sortAlphabeticalBackwards">Sort: Z-A</label>
+           <input type="radio" name="Sort" id="sortAlphabeticalBackwards" onclick="changeSort()">
         </div>
       </div>
 

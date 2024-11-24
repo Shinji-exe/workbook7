@@ -21,6 +21,16 @@ overflow-x: hidden;
     height: 100%; */
 }
 
+.bodyOfCard{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all ease-in-out .3s;
+}
+
+.bodyOfCard:hover, .bodyOfCard:focus{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
 .navigation {
   transition: all 0.2s ease-in-out;
   background-color: rgba(255, 255, 255, 0.5);
