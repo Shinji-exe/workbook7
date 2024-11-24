@@ -259,8 +259,8 @@ async function sortCardsBackwards() {
 
 function changeSort() {
   if (sortAlphabetical.checked) {
-    sortCards()
-  }else{
-    sortCardsBackwards()
+    sortCards();
+  } else {
+    sortCardsBackwards();
   }
 }
