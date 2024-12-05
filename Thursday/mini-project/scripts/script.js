@@ -125,7 +125,7 @@ function populateFirstDropdown(categories) {
 }
 //////////////////////////
 
-async function getCertainProductsDropdown() {
+async function filterProducts() {
   let idvalue = searchByProduct.value;
   if (idvalue) {
     try {
